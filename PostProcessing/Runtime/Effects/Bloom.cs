@@ -115,7 +115,7 @@ namespace UnityEngine.Rendering.PostProcessing
 
         // [down,up]
         Level[] m_Pyramid;
-        const int k_MaxPyramidSize = 16; // Just to make sure we handle 64k screens... Future-proof!
+        const int k_MaxPyramidSize = 3; //WHY DO YOU DO THIS UNITY... -> // Just to make sure we handle 64k screens... Future-proof!
 
         struct Level
         {
@@ -154,8 +154,8 @@ namespace UnityEngine.Rendering.PostProcessing
 
             // Do bloom on a half-res buffer, full-res doesn't bring much and kills performances on
             // fillrate limited platforms
-            int tw = Mathf.FloorToInt(context.screenWidth / (2f - rw));
-            int th = Mathf.FloorToInt(context.screenHeight / (2f - rh));
+            int tw = Mathf.FloorToInt(context.screenWidth / (4f - rw));
+            int th = Mathf.FloorToInt(context.screenHeight / (4f - rh));
             bool singlePassDoubleWide = (context.stereoActive && (context.stereoRenderingMode == PostProcessRenderContext.StereoRenderingMode.SinglePass) && (context.camera.stereoTargetEye == StereoTargetEyeMask.Both));
             int tw_stereo = singlePassDoubleWide ? tw * 2 : tw;
 
